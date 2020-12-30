@@ -2,16 +2,18 @@
 #define ENVIRONMENT_H
 
 #include <string>
-#include "state.h"
-#include "action.h"
+#include <vector>
 
+template<class StateType, class ActionType>
 class BaseEnvironment {
 	protected:
 		std::string name;
 	public:
-		BaseEnvironment(std::string Name) : name(Name) {};
+		BaseEnvironment(std::string Name) : name(Name) {}
+		BaseEnvironment() : name("AnonymousEnvironment") {}
 		virtual std::string getName() { return name; }
-		virtual double performAction(BaseAction action) = 0;
+		virtual std::vector<ActionType> getPossibleActions(StateType state) = 0;
+		virtual double performAction(ActionType action) = 0;
 };
 
 #endif // ENVIRONMENT_H
