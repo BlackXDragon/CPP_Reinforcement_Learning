@@ -37,5 +37,7 @@ int main() {
 
 	std::cout << "Random Agent choice for action: " << agent.getAction(possibleActions).getName() << std::endl;
 
+	agent.run(gbe, 10, true);
+
 	return 0;
 }
