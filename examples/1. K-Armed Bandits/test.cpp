@@ -39,5 +39,17 @@ int main() {
 
 	agent.run(gbe, 10, true);
 
+	epsilonGreedyBanditAgent EGagent("1", 5);
+
+	std::cout << "Epsilon Greedy Agent Action Value Table:\n";
+
+	EGagent.printAVTable();
+
+	std::cout << "\n\n";
+
+	EGagent.run(gbe, 10, true);
+
+	std::cout << "END\n";
+
 	return 0;
 }

@@ -8,6 +8,7 @@
 #include <vector>
 #include <random>
 #include <cassert>
+#include <stdexcept>
 
 template<class distribution, int k>
 class BanditEnvironment : public BaseEnvironment<BaseState, BanditAction> {
@@ -37,7 +38,7 @@ class BanditEnvironment : public BaseEnvironment<BaseState, BanditAction> {
 		double performAction(BanditAction action) override {
 			int aVal = action.getValue() - 1;
 			if(aVal >= this->_k || aVal < 0) {
-				throw "Action value out of bounds";
+				throw std::invalid_argument((const char*)("Action value out of bounds. Expected between 1 and "+std::to_string(this->_k)+", got "+std::to_string(aVal+1)+".").c_str());
 			}
 			return this->dists[aVal](this->generator);
 		}

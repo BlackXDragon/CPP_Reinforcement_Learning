@@ -10,8 +10,22 @@ class BaseAction {
 	public:
 		BaseAction(std::string Name, double Value) : name(Name), value(Value) {}
 		BaseAction() : name(""), value(0.0) {}
-		virtual double getValue() { return value; }
-		virtual std::string getName() { return name; }
+		virtual double getValue() const { return value; }
+		virtual std::string getName() const { return name; }
+};
+
+struct BaseActionHash {
+	public:
+		size_t operator() (const BaseAction* &ba) const {
+			return ba->getValue();
+		}
+};
+
+struct BaseActionEquality {
+	public:
+		size_t operator() (const BaseAction &ba1, const BaseAction &ba2) const {
+			return ba1.getValue() == ba2.getValue();
+		}
 };
 
 #endif // ACTION_H
