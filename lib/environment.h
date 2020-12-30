@@ -12,7 +12,7 @@ class BaseEnvironment {
 		BaseEnvironment(std::string Name) : name(Name) {}
 		BaseEnvironment() : name("AnonymousEnvironment") {}
 		virtual std::string getName() { return name; }
-		virtual std::vector<ActionType> getPossibleActions(StateType state) = 0;
+		virtual std::vector<ActionType> getPossibleActions(StateType state = StateType()) = 0;
 		virtual double performAction(ActionType action) = 0;
 };
 
